@@ -47,7 +47,10 @@ public class WorkerObject implements Runnable {
             updateMe();
             String strval=((Integer)counter).toString();
             System.out.println(strval);
+
+            synchronized (this){
             m_ongoing.setText(strval);
+            }
 
             Thread.sleep(1000);
         }
