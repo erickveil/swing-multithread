@@ -3,7 +3,6 @@ import java.awt.event.ActionListener;
 
 /**
  * Created by eveil on 1/16/14.
- * By extending Component, we provide access to processEvent(), which lets us launch events.
  */
 public class WorkerObject implements Runnable {
     private boolean is_running;
