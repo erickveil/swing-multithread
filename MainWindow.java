@@ -14,22 +14,21 @@ public class MainWindow {
     private JPanel top_win;
 
     public WorkerObject looper;
+    public Thread work_thread;
 
     public MainWindow() {
         looper= new WorkerObject();
+        work_thread= new Thread(looper);
 
         startLoopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                try{
-                    looper.runLoop();
+
+                if(work_thread.getState()==Thread.State.TERMINATED){
+                    work_thread= new Thread(looper);
                 }
-                catch(InterruptedException e){
-                    System.err.println(e.getMessage());
-                }
-                finally {
-                    System.out.println("Finished.");
-                }
+
+                work_thread.start();
             }
         });
 
@@ -47,6 +46,8 @@ public class MainWindow {
                looper.is_running=false;
             }
         });
+
+
     }
 
     public static void main(String[] args) {
@@ -55,5 +56,8 @@ public class MainWindow {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
+
+
     }
 }
