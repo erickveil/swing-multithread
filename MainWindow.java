@@ -22,7 +22,7 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try{
-                    runLoop();
+                    looper.runLoop();
                 }
                 catch(InterruptedException e){
                     System.err.println(e.getMessage());
@@ -47,24 +47,6 @@ public class MainWindow {
                looper.is_running=false;
             }
         });
-    }
-
-    public void runLoop() throws InterruptedException
-    {
-        looper.is_running=true;
-
-        while(looper.is_running){
-            looper.updateMe();
-            String strval=((Integer)looper.counter).toString();
-            System.out.println(strval);
-
-            // while this runs in the main thread, the gui will never even get a chance to redraw the text box with
-            // this set value.
-            tb_ongoing.setText(strval);
-
-            Thread.sleep(1000);
-        }
-
     }
 
     public static void main(String[] args) {
