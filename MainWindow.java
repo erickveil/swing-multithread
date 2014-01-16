@@ -17,7 +17,7 @@ public class MainWindow {
     public Thread work_thread;
 
     public MainWindow() {
-        looper= new WorkerObject();
+        looper= new WorkerObject(tb_ongoing);
         work_thread= new Thread(looper);
 
         startLoopButton.addActionListener(new ActionListener() {
@@ -35,7 +35,7 @@ public class MainWindow {
         getValueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String strval=((Integer)looper.counter).toString();
+                String strval=((Integer)looper.getCounter(this)).toString();
                 tb_demand.setText(strval);
             }
         });
@@ -43,7 +43,7 @@ public class MainWindow {
         stopLoopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-               looper.is_running=false;
+               looper.setRunState(false,this);
             }
         });
 
@@ -56,8 +56,5 @@ public class MainWindow {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
-
-
     }
 }
