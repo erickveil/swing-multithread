@@ -32,6 +32,7 @@ public class MainWindow {
                 }
             }
         });
+
         getValueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -39,6 +40,7 @@ public class MainWindow {
                 tb_demand.setText(strval);
             }
         });
+
         stopLoopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

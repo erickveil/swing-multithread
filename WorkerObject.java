@@ -13,7 +13,6 @@ public class WorkerObject {
 
     public void updateMe()
     {
-        //System.out.println("Counter value: "+counter);
         ++counter;
     }
 }
