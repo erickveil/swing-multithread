@@ -28,7 +28,15 @@ public class MainWindow {
                     work_thread= new Thread(looper);
                 }
 
-                work_thread.start();
+                try{
+                    work_thread.start();
+                }
+                catch(IllegalThreadStateException e)
+                {
+                    System.err.println("Caught: "+e.toString());
+                    System.err.println("Thread state: "+work_thread.getState());
+                    System.err.println("Ignoring command.");
+                }
             }
         });
 
@@ -46,8 +54,6 @@ public class MainWindow {
                looper.setRunState(false,this);
             }
         });
-
-
     }
 
     public static void main(String[] args) {

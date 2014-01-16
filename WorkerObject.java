@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
@@ -47,23 +45,20 @@ public class WorkerObject implements Runnable {
             updateMe();
             String strval=((Integer)counter).toString();
             System.out.println(strval);
-
-            synchronized (this){
             m_ongoing.setText(strval);
-            }
 
             Thread.sleep(1000);
         }
     }
 
-    public void setRunState(boolean state, ActionListener al)
+    public void setRunState(boolean state, final ActionListener al)
     {
         synchronized(al){
             is_running=state;
         }
     }
 
-    public int getCounter(ActionListener al)
+    public int getCounter(final ActionListener al)
     {
         synchronized (al){
             return counter;
